@@ -27,6 +27,7 @@ public class FilmeController {
 	@GetMapping()
 	public ResultDto get() {
 		List<Filme> filmes = filmeRepository.findAll();
+		filmes = filmes.stream().filter(filme -> filme.isWinner()).collect(Collectors.toList());
 		List<IntervaDto> listIntervals = new ArrayList<>();
 		List<String> producers = new ArrayList<String>();
 		filmes.stream().forEach(f -> {
@@ -40,7 +41,7 @@ public class FilmeController {
 		for (String p : producers) {
 			// filtra filmes vencedores de pordutores
 			List<Filme> filmesProducer = filmes.stream()
-					.filter(filme -> filme.getProducers().contains(p) && filme.isWinner()).collect(Collectors.toList());
+					.filter(filme -> filme.getProducers().stream().filter(fp -> fp.contains(p.trim())).count() > 0 ).collect(Collectors.toList());
 			// Se produtor possui mais que 1 filme
 			if (filmesProducer.size() > 1) {
 				// make intervalo

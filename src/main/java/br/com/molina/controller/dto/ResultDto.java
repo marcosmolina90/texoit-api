@@ -6,6 +6,6 @@ import lombok.Data;
 
 @Data
 public class ResultDto {
-	public List<IntervaDto> min;
-	public List<IntervaDto> max;
+	private List<IntervaDto> min;
+	private List<IntervaDto> max;
 }

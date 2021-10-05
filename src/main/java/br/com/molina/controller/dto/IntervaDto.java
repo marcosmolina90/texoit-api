@@ -4,9 +4,9 @@ import lombok.Data;
 
 @Data
 public class IntervaDto{
-    public String producer;
-    public int interval;
-    public int previousWin;
-    public int followingWin;
+    private String producer;
+    private int interval;
+    private int previousWin;
+    private int followingWin;
 }
 
